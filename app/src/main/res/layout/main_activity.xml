@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="view_model"
+            type="com.example.truecallerapp.ui.main.MainViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:paddingBottom="25dp">
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{view_model.progressVisibility ? false : true}"
+                android:text="@string/go"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--            style="?android:attr/borderlessButtonStyle"-->
+            <!--            android:background="?android:attr/selectableItemBackground"-->
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/loading_requests"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{view_model.progressVisibility ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/btn"
+                app:layout_constraintEnd_toEndOf="@+id/btn"
+                app:layout_constraintStart_toStartOf="@+id/btn"
+                app:layout_constraintTop_toTopOf="@+id/btn"
+                tools:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/t10char_txt_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:scrollbars="vertical"
+                android:text="@{view_model.t10CharField}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn" />
+
+            <TextView
+                android:id="@+id/e10char_txt_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:scrollbars="vertical"
+                android:text="@{view_model.e10CharField}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/t10char_txt_view" />
+
+            <TextView
+                android:id="@+id/map_txt_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:scrollbars="vertical"
+                android:text="@{view_model.wordCountMapField}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/e10char_txt_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
